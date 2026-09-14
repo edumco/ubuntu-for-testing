@@ -1,10 +1,14 @@
 # Python Language Support
 
-Testers and devs use multiple projects at the same machine causing version conflicts. 
+The managing of python versions, environments and packages is done combining several Python tools. 
 
-Usually we combine Python virtual environment tools but each installation gets tied to the project. I decided to use UV Python manager for 2 main reasons: performance and easy of use.
+The UV Python manager improves this process in two main reasons:
 
-It is a faster (Rust based) integrated solution (a single comand) that allows to:
+1. Performance: UV is written in Rust and optimized for parallel processing.
+
+1. Easy of use: It unifies the commands of several tools keeping their original names. 
+
+It allows to:
 
 - Install and update python versions:
 

@@ -2,9 +2,21 @@
 
 > Scripts to easily install, manage and update tools on Ubuntu
 
-Ubuntu does not come by default with support for several Linux app types and utilities. They are scattered across repositories and have several installation processes. 
+## Motivation
 
-This repository creates an unified process of update and helps installations through a collection of scripts focused on giving you the best tools for daily use that you can carry with you in all your projects.
+- Testers and devs use multiple projects at the same machine causing version conflicts.
+
+- Ubuntu does not come by default with support for several Linux app types.
+
+- There is not an easy way to update all your apps at once
+
+## What this repository does?
+
+- It creates an unified process of update apps.
+
+- Helps installations through a collection of installing scripts.
+
+- Install the environments and tools focusing on stable and non conflicting dependencies.
 
 ## Setup
 
@@ -45,6 +57,7 @@ You can install my selected and tested environments and tools:
 ### Environments
 
 - [Python](/docs/python.md)
+- [Java](/docs/java.md)
 
 ### Tools
 
@@ -55,7 +68,6 @@ If you want to install all scripts at once, got to the folder and run:
 ```bash
 cat $(ls) | sh 
 ```
-
 
 ## References
 
