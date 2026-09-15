@@ -58,6 +58,7 @@ You can install my selected and tested environments and tools:
 
 - [Python](/docs/python.md)
 - [Java](/docs/java.md)
+- [JavaScript and TypeScrip](/docs/js.md)
 
 ### Tools
 
