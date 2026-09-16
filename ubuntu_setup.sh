@@ -41,9 +41,9 @@
 	# Install AppManager (install and uninstall AppImages)
 	dra download https://github.com/kem-a/AppManager \
 		--select AppManager-{tag}-anylinux-x86_64.AppImage \
-		--output $HOME/AppManager && \
-		sudo chmod +x $HOME/AppManager &&
-		$HOME/./AppManager install $HOME/AppManager
+		--output $HOME/app-manager && \
+		sudo chmod +x $HOME/app-manager &&
+		$HOME/./app-manager install $HOME/app-manager
 
 # Alias 'update'
 	
@@ -66,7 +66,7 @@
 	echo "flatpak uninstall --unused" >> $HOME/.update.sh
 	
 	# AppImage
-	echo "$HOME/./Applications/AppManager --update-all" >> $HOME/.update.sh
+	echo "app-manager --update-all" >> $HOME/.update.sh
 	
 	# Make sure .bash_aliases exists
 	touch $HOME/.bash_aliases
