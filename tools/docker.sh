@@ -29,5 +29,5 @@ sudo apt install docker-ce \
 	docker-compose-plugin
 
 sudo systemctl start docker
-sudo usermod -aG docker $USER 
+sudo usermod -aG docker "$USER" 
 

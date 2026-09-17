@@ -39,11 +39,11 @@ After the installations you'll be able to:
 - Update all your apps with a single command: `update`
 
 ## How it works?
-	
+
 The main script installs some app managers (flatpak, AppManage and DRA), creates a local script to keep all update commands together  ('update.sh') and finally creates an alias to this script.
 
 Every time you enter 'update' on the terminal, all the update and cleanup commands are executed.
- 
+
 To keep consistent behavior, every new environment script adds its own update and cleanup commands to the end of update file.
 
 ```bash
@@ -62,6 +62,12 @@ You can install my selected and tested environments and tools:
 
 ### Tools
 
+- [Screen Recording Tools](/tools/screen-recording.sh)
+- [VS Code](/tools/vscode.sh)
+- [API tools](/tools/api.sh)
+- [Databases](/tools/databases.sh)
+- [Performance](/tools/performance.sh)
+
 ## Last tip
 
 If you want to install all scripts at once, got to the folder and run:  
@@ -72,11 +78,10 @@ cat $(ls) | sh
 
 ## References
 
-- https://yarygintech.com/articles/flatpak-vs-snap-vs-appimage/
+- <https://yarygintech.com/articles/flatpak-vs-snap-vs-appimage/>
 
-- https://flathub.org/
+- <https://flathub.org/>
 
-- https://www.appimagehub.com/
+- <https://www.appimagehub.com/>
 
-- https://github.com/kem-a/AppManager
-
+- <https://github.com/kem-a/AppManager>
