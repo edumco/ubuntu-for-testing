@@ -55,6 +55,7 @@
 		echo "sudo apt-get autoremove --purge --yes"
 		echo "sudo apt-get autoclean --yes"
 		echo "sudo snap refresh"
+		echo LANG=C snap list --all | awk '/disabled/{print $1" --revision "$3}' | xargs -rn3 sudo snap remove
 		echo "flatpak update"
 		echo "flatpak uninstall --unused"
 		echo "app-manager --update-all"
