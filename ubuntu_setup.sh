@@ -28,7 +28,8 @@
 	# Helps installation directly from GitHub 
 	curl --proto '=https' --tlsv1.2 -sSf \
 	https://raw.githubusercontent.com/devmatteini/dra/refs/heads/main/install.sh \
-	| bash -s -- --to "$HOME/.local/bin"
+	| bash -s -- --to "$HOME/.local/bin/dra"
+	source ~/.profile
 
 # AppImage apps support
 	
