@@ -41,7 +41,7 @@
 		--select AppManager-{tag}-anylinux-x86_64.AppImage \
 		--output "$HOME/app-manager" && \
 		sudo chmod +x "$HOME/app-manager" &&
-		"$HOME/./app-manager" install "$HOME/app-manager"
+		sudo "$HOME/./app-manager" install "$HOME/app-manager"
 
 # Alias 'update'
 	
