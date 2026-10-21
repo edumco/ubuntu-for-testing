@@ -31,6 +31,14 @@
 	| bash -s -- --to "$HOME/.local/bin/dra"
 	source ~/.profile
 
+# Deb-get
+	dra download --select *.deb https://github.com/wimpysworld/deb-get --output deb-get.deb
+	sudo chmod +x deb-get.deb
+	sudo dpkg --install deb-get.deb
+	rm deb-get.deb
+	deb-get update
+	deb-get install topgrade
+
 # AppImage apps support
 	
 	# Installs support for old AppImage apps 
@@ -39,37 +47,21 @@
 	# Install AppManager (install and uninstall AppImages)
 	dra download https://github.com/kem-a/AppManager \
 		--select AppManager-{tag}-anylinux-x86_64.AppImage \
-		--output "$HOME/app-manager" && \
-		sudo chmod +x "$HOME/app-manager" &&
-		sudo "$HOME/./app-manager" install "$HOME/app-manager"
+		--output "$HOME/app-manager"
+		
+	sudo chmod +x "$HOME/app-manager"
+	sudo "$HOME/./app-manager" install "$HOME/app-manager"
 
 # Alias 'update'
-	
-	# Creates a script file on the HOME folder 
-	touch "$HOME/.update.sh"
-	sudo chmod +x "$HOME/.update.sh"
-
-	# Adds all update commands to update file
-	{
-		echo "sudo apt-get update"
-		echo "sudo apt-get upgrade --yes"
-		echo "sudo apt-get autoremove --purge --yes"
-		echo "sudo apt-get autoclean --yes"
-		echo "sudo snap refresh"
-		echo LANG=C snap list --all | awk '/disabled/{print $1" --revision "$3}' | xargs -rn3 sudo snap remove
-		echo "flatpak update"
-		echo "flatpak uninstall --unused"
-		echo "app-manager --update-all"
-
-	} >> "$HOME/.update.sh"
 	
 	# Make sure .bash_aliases exists
 	touch "$HOME/.bash_aliases"
 	
 	# Adds 'update' alias
-	echo "alias update='$HOME/./.update.sh'" >> "$HOME/.bash_aliases"
+	echo "alias update=topgrade"
 	
 	# Reloads the bash session
+	source "$HOME/.profile"
 	source "$HOME/.bashrc"
 	
 	# Test the alias
