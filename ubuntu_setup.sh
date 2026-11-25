@@ -25,19 +25,18 @@
 
 # DRA (Download Release Assets from GitHub) Helps installation directly from GitHub 
 
-	# Helps installation directly from GitHub 
 	curl --proto '=https' --tlsv1.2 -sSf \
 	https://raw.githubusercontent.com/devmatteini/dra/refs/heads/main/install.sh \
 	| bash -s -- --to "$HOME/.local/bin/dra"
 	source ~/.profile
 
-# Deb-get
+# Deb-get (selected packages in debian format)
+
 	dra download --select *.deb https://github.com/wimpysworld/deb-get --output deb-get.deb
 	sudo chmod +x deb-get.deb
 	sudo dpkg --install deb-get.deb
 	rm deb-get.deb
 	deb-get update
-	deb-get install topgrade
 
 # AppImage apps support
 	
@@ -52,13 +51,17 @@
 	sudo chmod +x "$HOME/app-manager"
 	sudo "$HOME/./app-manager" install "$HOME/app-manager"
 
-# Alias 'update'
+# Topgrade (Detects and updates all package managers of your machine
+
+	deb-get install topgrade
+
+# Alias 'update' (An easy command to use everyday)
 	
 	# Make sure .bash_aliases exists
 	touch "$HOME/.bash_aliases"
 	
 	# Adds 'update' alias
-	echo "alias update=topgrade"
+	echo "alias update=topgrade --yes"
 	
 	# Reloads the bash session
 	source "$HOME/.profile"
