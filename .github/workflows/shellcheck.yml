@@ -1,0 +1,29 @@
+name: Shell checks
+
+on:
+  push:
+    paths:
+      - "ubuntu_setup.sh"
+      - ".github/workflows/shell-check.yml"
+  pull_request:
+    paths:
+      - "ubuntu_setup.sh"
+      - ".github/workflows/shell-check.yml"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Bash syntax
+        run: bash -n ubuntu_setup.sh
+
+      - name: Install ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes shellcheck
+
+      - name: Lint script
+        run: shellcheck ubuntu_setup.sh
