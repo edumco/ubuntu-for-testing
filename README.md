@@ -40,19 +40,15 @@ After the installations you'll be able to:
 
 ## How it works?
 
-The main script installs some app managers (flatpak, AppManage and DRA), creates a local script to keep all update commands together  ('update.sh') and finally creates an alias to this script.
+1. The main script installs some package managers (Flatpak, AppManager, DRA, deb-get)
+2. Install [Topgrade](https://github.com/topgrade-rs/topgrade) that automaticly detects and updates all package managers
+4. Creates an alias `update` to call topgrade
 
-Every time you enter 'update' on the terminal, all the update and cleanup commands are executed.
-
-To keep consistent behavior, every new environment script adds its own update and cleanup commands to the end of update file.
-
-```bash
-echo "uv self update && uv python upgrade && cache prune" >> ~/.update.sh 
-```
+Every time you enter `update` on the terminal, all the update and cleanup commands are executed.
 
 ## What else can I do?
 
-You can install my selected and tested environments and tools:
+You can install some environment managers and tools:
 
 ### Environments
 
