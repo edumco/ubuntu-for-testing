@@ -25,11 +25,18 @@
 
 # DRA (Download Release Assets from GitHub) Helps installation directly from GitHub 
 
-	# Helps installation directly from GitHub 
 	curl --proto '=https' --tlsv1.2 -sSf \
 	https://raw.githubusercontent.com/devmatteini/dra/refs/heads/main/install.sh \
 	| bash -s -- --to "$HOME/.local/bin/dra"
 	source ~/.profile
+
+# Deb-get (selected packages in debian format)
+
+	dra download --select *.deb https://github.com/wimpysworld/deb-get --output deb-get.deb
+	sudo chmod +x deb-get.deb
+	sudo dpkg --install deb-get.deb
+	rm deb-get.deb
+	deb-get update
 
 # AppImage apps support
 	
@@ -39,37 +46,25 @@
 	# Install AppManager (install and uninstall AppImages)
 	dra download https://github.com/kem-a/AppManager \
 		--select AppManager-{tag}-anylinux-x86_64.AppImage \
-		--output "$HOME/app-manager" && \
-		sudo chmod +x "$HOME/app-manager" &&
-		sudo "$HOME/./app-manager" install "$HOME/app-manager"
+		--output "$HOME/app-manager"
+		
+	sudo chmod +x "$HOME/app-manager"
+	sudo "$HOME/./app-manager" install "$HOME/app-manager"
 
-# Alias 'update'
-	
-	# Creates a script file on the HOME folder 
-	touch "$HOME/.update.sh"
-	sudo chmod +x "$HOME/.update.sh"
+# Topgrade (Detects and updates all package managers of your machine
 
-	# Adds all update commands to update file
-	{
-		echo "sudo apt-get update"
-		echo "sudo apt-get upgrade --yes"
-		echo "sudo apt-get autoremove --purge --yes"
-		echo "sudo apt-get autoclean --yes"
-		echo "sudo snap refresh"
-		echo LANG=C snap list --all | awk '/disabled/{print $1" --revision "$3}' | xargs -rn3 sudo snap remove
-		echo "flatpak update"
-		echo "flatpak uninstall --unused"
-		echo "app-manager --update-all"
+	deb-get install topgrade
 
-	} >> "$HOME/.update.sh"
+# Alias 'update' (An easy command to use everyday)
 	
 	# Make sure .bash_aliases exists
 	touch "$HOME/.bash_aliases"
 	
 	# Adds 'update' alias
-	echo "alias update='$HOME/./.update.sh'" >> "$HOME/.bash_aliases"
+	echo "alias update=topgrade --yes"
 	
 	# Reloads the bash session
+	source "$HOME/.profile"
 	source "$HOME/.bashrc"
 	
 	# Test the alias

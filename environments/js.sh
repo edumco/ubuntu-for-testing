@@ -9,7 +9,3 @@ pnpm runtime set node lts -g
 
 # Installs TypeScript globally (latest stable)
 pnpm install -y -g -D typescript
-
-echo "pnpm self-update && pnpm update -g && pnpm prune" >> $HOME/.update.sh
-
-
