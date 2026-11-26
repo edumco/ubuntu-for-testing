@@ -37,7 +37,7 @@
 	source "$HOME/.profile"
 
 # AppImage apps support
-	
+
 	# Installs support for old AppImage apps 
 	sudo apt-get --yes install libfuse2t64
 	
@@ -46,6 +46,14 @@
 		--select AppManager-{tag}-anylinux-x86_64.AppImage \
 		--output "$HOME/app-manager" \
 		--install
+
+	source "$HOME/.profile" 
+
+	# Removes conflicting AppImageLauncher if installed	
+	sudo apt remove --purge appimagelauncher
+	$HOME/Applications/AppManager uninstall $HOME/Applications/AppImageLauncher
+	rm $HOME/Applications/appimagelauncher*
+	rm $HOME/Applications/AppImage*
 
 # Deb-get (selected packages in debian format)
 
