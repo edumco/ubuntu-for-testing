@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# shellcheck disable=SC1009,SC1083,SC1091,SC2046,SC2250
+
 # Updates all apps
 
 	sudo apt-get update && sudo apt-get upgrade --yes
@@ -9,14 +11,13 @@
 	sudo snap refresh
 	 
 # Essential Packages
-
+	
 	sudo apt-get install --yes $(check-language-support) # Language Support
 	sudo apt-get install --yes ubuntu-drivers-common # Third-party drivers
 	sudo apt-get install --yes ubuntu-restricted-extras # Media codecs and fonts
-	sudo apt-get install --yes gstreamer1.0-plugins-bad # Extra media codecs
 	sudo apt-get install --yes curl wget # download tools used in scripts 
 	sudo apt-get install --yes git git-doc # git
-	
+
 # Flatpak support
 
 	sudo apt-get install --yes flatpak
@@ -25,18 +26,15 @@
 
 # DRA (Download Release Assets from GitHub) Helps installation directly from GitHub 
 
-	curl --proto '=https' --tlsv1.2 -sSf \
-	https://raw.githubusercontent.com/devmatteini/dra/refs/heads/main/install.sh \
-	| bash -s -- --to "$HOME/.local/bin/dra"
-	source ~/.profile
+	curl --silent --show-error --fail --proto '=https'\
+		--location https://raw.githubusercontent.com/devmatteini/dra/refs/heads/main/install.sh \
+		--output install.sh 
 
-# Deb-get (selected packages in debian format)
+	bash install.sh --to "$HOME/.local/bin/dra"
 
-	dra download --select *.deb https://github.com/wimpysworld/deb-get --output deb-get.deb
-	sudo chmod +x deb-get.deb
-	sudo dpkg --install deb-get.deb
-	rm deb-get.deb
-	deb-get update
+	sudo ln -s "$HOME/.local/bin/dra" /usr/local/bin/dra
+
+	source "$HOME/.profile"
 
 # AppImage apps support
 	
@@ -44,12 +42,19 @@
 	sudo apt-get --yes install libfuse2t64
 	
 	# Install AppManager (install and uninstall AppImages)
-	dra download https://github.com/kem-a/AppManager \
+	sudo dra download https://github.com/kem-a/AppManager \
 		--select AppManager-{tag}-anylinux-x86_64.AppImage \
-		--output "$HOME/app-manager"
-		
-	sudo chmod +x "$HOME/app-manager"
-	sudo "$HOME/./app-manager" install "$HOME/app-manager"
+		--output "$HOME/app-manager" \
+		--install
+
+# Deb-get (selected packages in debian format)
+
+	sudo dra download https://github.com/wimpysworld/deb-get \
+		--select deb-get_{tag}-1_all.deb \
+		--output "$HOME/deb-get.deb" \
+		--install
+
+	deb-get update # populates the deb-get database with all available packages
 
 # Topgrade (Detects and updates all package managers of your machine
 
